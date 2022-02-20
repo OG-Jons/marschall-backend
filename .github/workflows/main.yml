@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.13.x]
 
     steps:
 
@@ -20,11 +20,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install npm dependencies
-        run: npm ci
+      - name: Install dependencies
+        uses: borales/actions-yarn@v2.3.0
+          with:
+            cmd: install --immutable --immutable-cache --check-cache
 
       - name: Lint code
-        run: npm run lint
+        uses: borales/actions-yarn@v2.3.0
+          with:
+            cmd: lint
 
       - name: Run tests
-        run: npm run test
+        uses: borales/actions-yarn@v2.3.0
+          with:
+            cmd: test
