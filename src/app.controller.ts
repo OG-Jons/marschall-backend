@@ -8,8 +8,9 @@ export class AppController {
   private readonly logger = new Logger(AppController.name);
 
   @Get()
-  getHello(): string {
+  getHello(): { helloWorld: string } {
     this.logger.log('Hello world called');
-    return this.appService.getHello();
+    const helloWorld = this.appService.getHello();
+    return { helloWorld };
   }
 }
