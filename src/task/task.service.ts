@@ -18,19 +18,18 @@ export class TaskService {
     return this.taskRepository.save(newTask);
   }
 
-  findAll() {
-    return this.taskRepository.find();
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} task`;
+  findAllFromListId(id: string) {
+    return this.taskRepository.find({
+      where: { list: id },
+      order: { createdAt: 'DESC' },
+    });
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+    return this.taskRepository.update(id, updateTaskDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} task`;
+    return this.taskRepository.delete(id);
   }
 }
