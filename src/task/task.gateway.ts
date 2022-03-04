@@ -2,9 +2,7 @@ import {
   WebSocketGateway,
   SubscribeMessage,
   MessageBody,
-  OnGatewayInit,
   OnGatewayConnection,
-  OnGatewayDisconnect,
   WebSocketServer,
 } from '@nestjs/websockets';
 import { TaskService } from './task.service';
